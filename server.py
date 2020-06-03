@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import sys
+import subprocess
 
 
 class MyServer(BaseHTTPRequestHandler):
@@ -44,6 +45,8 @@ class MyServer(BaseHTTPRequestHandler):
                     print(movement_dict)
                     f.write(str(movement_dict))
 
+        subprocess.call(['python', 'interpretter.py'])
+
     def do_AUTHHEAD(self):
         self.send_response(401)
         self.send_header('WWW-Authenticate', 'Basic realm=\"Test\"')
@@ -66,5 +69,8 @@ def run():
 
 if __name__ == "__main__":
     hostName = "localhost"
-    hostPort = int(sys.argv[1])
+    try:
+        hostPort = int(sys.argv[1])
+    except Exception:
+        hostPort = 8080
     run()
