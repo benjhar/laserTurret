@@ -11,15 +11,15 @@ with open('movement.json') as f:
     # print(movement)
 
 if direction == "l":
-    ser.write(b"servo1 {-amount}".format(-amount))
+    ser.write(bytes("servo1 {-amount}".format(-amount)))
 
 if direction == "r":
-    ser.write(b"servo1 {amount}".format(amount))
+    ser.write(bytes("servo1 {amount}".format(amount)))
 
 if direction == "u":
-    ser.write(b"servo2 {}".format(amount))
+    ser.write(bytes("servo2 {}".format(amount)))
 
 if direction == "d":
-    ser.write(b"servo2 {}".format(-amount))
+    ser.write(bytes("servo2 {}".format(-amount)))
 
 ser.close()
