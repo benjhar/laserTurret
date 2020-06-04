@@ -41,7 +41,7 @@ class MyServer(BaseHTTPRequestHandler):
                     value = [char for char in i.replace('Value: ', '')]
                     direction = value[0]
                     amount = ''.join(value[1:])
-                    movement_dict = {"direction": direction, "amount": amount}
+                    movement_dict = {"direction": f"{direction}", "amount": f"{amount}"}
                     print(movement_dict)
                     f.write(str(movement_dict))
 
