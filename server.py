@@ -41,9 +41,9 @@ class MyServer(BaseHTTPRequestHandler):
                     value = [char for char in i.replace('Value: ', '')]
                     direction = value[0]
                     amount = ''.join(value[1:])
-                    movement_dict = {"direction": f"{direction}", "amount": f"{amount}"}
+                    movement_dict = '{' + f'"direction": "{direction}", "amount": "{amount}"' + '}'
                     print(movement_dict)
-                    f.write(str(movement_dict))
+                    f.write('{' + f'"direction": "{direction}", "amount": "{amount}"' + '}')
 
         subprocess.call(['python', 'interpretter.py'])
 
