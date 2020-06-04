@@ -37,15 +37,11 @@ class MyServer(BaseHTTPRequestHandler):
     def do_POST(self):
         for i in str(self.headers).split('\n'):
             if i.startswith("Value"):
-                with open('movement.json', 'w') as f:
-                    value = [char for char in i.replace('Value: ', '')]
-                    direction = value[0]
-                    amount = ''.join(value[1:])
-                    movement_dict = '{' + f'"direction": "{direction}", "amount": "{amount}"' + '}'
-                    print(movement_dict)
-                    f.write('{' + f'"direction": "{direction}", "amount": "{amount}"' + '}')
-
-        subprocess.call(['python', 'interpretter.py'])
+                value = [char for char in i.replace('Value: ', '')]
+                direction = value[0]
+                amount = ''.join(value[1:])
+                print(f"\n\nCommand from {self.client_address}: {direction} {amount}\n\n")
+                subprocess.call(['python', 'interpretter.py', f'{direction}', f'{amount}'])
 
     def do_AUTHHEAD(self):
         self.send_response(401)
