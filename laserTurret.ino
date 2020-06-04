@@ -1,14 +1,14 @@
 #include <Servo.h>
 #include <string.h>
 
-Servo horisontal;
+Servo horizontal;
 Servo vertical;
 
 String incomingByte = ""; // for incoming serial data
 
 void setup() {
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
-  horisontal.attach(8);
+  horizontal.attach(8);
   vertical.attach(9);
 }
 
@@ -37,7 +37,7 @@ void loop() {
     eraseSubStr(servo, " ");
 
     if (servo == "servo1") {
-      horisontal.write(amount.toInt());
+      horizontal.write(amount.toInt());
     }
 
     else if (servo == "servo2") {
