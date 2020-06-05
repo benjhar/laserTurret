@@ -41,6 +41,7 @@ class MyServer(BaseHTTPRequestHandler):
                 direction = value[0]
                 amount = ''.join(value[1:])
                 print(f"\n\nCommand from {self.client_address}: {direction} {amount}\n\n")
+                print(["python", "interpretter.py", f"{direction}", f"{amount}"])
                 subprocess.call(['python', 'interpretter.py', f'{direction}', f'{amount}'])
 
     def do_AUTHHEAD(self):
